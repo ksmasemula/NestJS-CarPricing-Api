@@ -6,10 +6,11 @@ content-type: application/json
     "password": "teaekdfdshfsd"
 }
 
+###  find one user
+GET http://localhost:3030/auth/1
 
 ### Find all users with a given email
 GET http://localhost:3030/auth?email=adrf@t.com
-
 
 ### Delete  user given id
 DELETE http://localhost:3030/auth/1

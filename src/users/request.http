@@ -7,7 +7,7 @@ content-type: application/json
 }
 
 ###  find one user
-GET http://localhost:3030/auth/1
+GET http://localhost:3030/auth/3
 
 ### Find all users with a given email
 GET http://localhost:3030/auth?email=adrf@t.com

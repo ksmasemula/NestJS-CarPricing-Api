@@ -18,6 +18,9 @@ content-type: application/json
 ###  find one user
 GET http://localhost:3030/auth/3
 
+###  Sign out User 
+POST http://localhost:3030/auth/signout
+
 ### Find all users with a given email
 GET http://localhost:3030/auth?email=adrf@t.com
 

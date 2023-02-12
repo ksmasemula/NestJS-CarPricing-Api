@@ -2,7 +2,7 @@ POST http://localhost:3030/auth/signup
 content-type: application/json
 
 {
-    "email":"adrf@t.com",
+    "email":"jazz@t.com",
     "password": "teaekdfdshfsd"
 }
 
@@ -13,10 +13,10 @@ GET http://localhost:3030/auth/3
 GET http://localhost:3030/auth?email=adrf@t.com
 
 ### Delete  user given id
-DELETE http://localhost:3030/auth/1
+DELETE http://localhost:3030/auth/2
 
 ### Update a user
-PATCH http://localhost:3030/auth/2
+PATCH http://localhost:3030/auth/4
 content-type: application/json
 
 {

@@ -12,10 +12,10 @@ export class UsersController {
     constructor(
         private authService: AuthService,
         private usersService: UsersService
-        ){}
-    
+    ) { }
+
     @Get('/:id')
-    async findUser(@Param('id') id:string){
+    async findUser(@Param('id') id: string) {
         const user = await this.usersService.findOne(+id);
         if (!user) {
             throw new NotFoundException('User not found');
@@ -25,22 +25,27 @@ export class UsersController {
     }
 
     @Get()
-    findAllUsers(@Query('email') email: string){
+    findAllUsers(@Query('email') email: string) {
         return this.usersService.find(email);
     }
 
     @Post('/signup')
-    createUser(@Body() body:CreateUserDto ){
+    createUser(@Body() body: CreateUserDto) {
         this.authService.singup(body.email, body.password);
     }
 
-     @Patch('/:id')
-     updateUser(@Param('id') id:string, @Body() body: UpdateUserDto){
+    @Post('/signin')
+    signin(@Body() body: CreateUserDto) {
+        return this.authService.signin(body.email, body.password);
+    }
+    
+    @Patch('/:id')
+    updateUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
         return this.usersService.update(+id, body);
-     }
+    }
 
-     @Delete('/:id')
-     deleteUser(@Param('id') id: string){
+    @Delete('/:id')
+    deleteUser(@Param('id') id: string) {
         return this.usersService.remove(+id);
-     }
+    }
 }

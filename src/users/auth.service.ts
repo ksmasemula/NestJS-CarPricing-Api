@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { randomBytes, scrypt as _scrypt } from "crypto";
 import { promisify } from "util";
@@ -16,7 +16,7 @@ export class AuthService {
         }
 
         const salt = randomBytes(8).toString('hex');
-        const hash = (await scrypt(password,salt,32) as Buffer);
+        const hash = (await scrypt(password, salt, 32) as Buffer);
 
         const result = `${salt}.${hash.toString('hex')}`;
 
@@ -25,7 +25,19 @@ export class AuthService {
         return user;
     }
 
-    singing() {
+    async signin(email: string, password: string) {
+        const [user] = await this.usersService.find(email);
+        if (!user) {
+            throw new BadRequestException('username or password is invalid');
+        }
 
+        const [salt, storedHash] = user.password.split('.');
+        const hash = (await scrypt(password, salt, 32)) as Buffer;
+
+        if (storedHash !== hash.toString('hex')) {
+            throw new BadRequestException('username or password is invalid');
+        }
+
+        return user;
     }
 }

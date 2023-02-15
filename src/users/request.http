@@ -18,7 +18,7 @@ content-type: application/json
 ### get current user thats logged in
 GET http://localhost:3030/auth/whoami
 ###  find one user
-GET http://localhost:3030/auth/3
+GET http://localhost:3030/auth/5
 
 ###  Sign out User 
 POST http://localhost:3030/auth/signout

@@ -65,14 +65,14 @@ describe('UsersController', () => {
     expect(user).toBeDefined();
   })
 
-  // it('signin updates session object and returns user', async () => {
-  //   const session = { userId: -10 } as any;
-  //   const user = await controller.signin(
-  //     { email: 'asdf@asdf.com', password: 'asdfasdf' } as CreateUserDto,
-  //     session 
-  //   );
+  it('signin updates session object and returns user', async () => {
+    const session = { userId: -10 } as any;
+    const user = await controller.signin(
+      { email: 'asdf@asdf.com', password: 'asdfasdf' } as CreateUserDto,
+      session 
+    );
 
-  //   expect(user.id).toEqual(1);
-  //   expect(session.userId).toEqual(1);
-  // });
+    expect(user.id).toEqual(1);
+    expect(session.userId).toEqual(1);
+  });
 });
